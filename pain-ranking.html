@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FieldProof | Pain Ranking</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f5f8;
+      color: #263548;
+    }
+
+    header {
+      background: #14283f;
+      padding: 22px 7%;
+    }
+
+    header a {
+      color: #64c5b5;
+      font-size: 21px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 950px;
+      margin: 42px auto;
+      padding: 0 22px;
+    }
+
+    .eyebrow {
+      color: #168477;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.4px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      color: #14283f;
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .intro {
+      color: #718096;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .notice {
+      background: #fff8e8;
+      border: 1px solid #f0dba9;
+      border-radius: 9px;
+      padding: 15px;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid #dce3eb;
+      border-radius: 12px;
+      padding: 23px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 18px;
+      color: #14283f;
+      margin-bottom: 17px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      margin: 14px 0 7px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #cbd5df;
+      border-radius: 7px;
+      font: inherit;
+      font-size: 14px;
+    }
+
+    textarea {
+      min-height: 75px;
+      resize: vertical;
+    }
+
+    button {
+      background: #168477;
+      color: white;
+      border: 0;
+      border-radius: 7px;
+      padding: 12px 18px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 17px;
+    }
+
+    button:hover { background: #116b61; }
+
+    .pain-item {
+      border: 1px solid #dce3eb;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 12px;
+      background: #fff;
+    }
+
+    .pain-item strong {
+      color: #14283f;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .pain-item p {
+      color: #718096;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .rank {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: bold;
+      color: #176b5d;
+      background: #e5f5f1;
+      padding: 5px 8px;
+      border-radius: 15px;
+      margin-bottom: 8px;
+    }
+
+    #painList { margin-top: 16px; }
+
+    #feedback {
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #176b5d;
+    }
+
+    .back {
+      display: inline-block;
+      color: #168477;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html">FieldProof</a>
+</header>
+
+<main>
+  <p class="eyebrow">EVIDENCE → PRIORITY → ACTION</p>
+  <h1>Pain ranking</h1>
+
+  <p class="intro">
+    Identify the three findings that most threaten the user's ability
+    to complete the core task. Rank them using observed evidence,
+    not assumptions or personal preference.
+  </p>
+
+  <div class="notice">
+    <strong>Important:</strong> No findings have been entered yet.
+    The ranking must come from the five real-user sessions.
+    A single severe failure can outrank a minor problem repeated several times.
+  </div>
+
+  <section class="panel">
+    <h2>Register a pain point</h2>
+
+    <form id="painForm">
+      <label for="title">Finding / pain point</label>
+      <input id="title" maxlength="120" required
+        placeholder="Describe the observed problem">
+
+      <label for="source">Evidence source</label>
+      <select id="source" required>
+        <option value="">Select session</option>
+        <option>Session 01</option>
+        <option>Session 02</option>
+        <option>Session 03</option>
+        <option>Session 04</option>
+        <option>Session 05</option>
+      </select>
+
+      <label for="severity">Impact on the core task</label>
+      <select id="severity" required>
+        <option value="">Select severity</option>
+        <option value="5">5 — Safety error or harmful outcome</option>
+        <option value="4">4 — False result or task abandonment</option>
+        <option value="3">3 — Requires outside help or major rework</option>
+        <option value="2">2 — Significant delay or repeated effort</option>
+        <option value="1">1 — Minor friction or cosmetic issue</option>
+      </select>
+
+      <label for="behavior">Observed behavior</label>
+      <textarea id="behavior" maxlength="500" required
+        placeholder="What did the participant actually do?"></textarea>
+
+      <label for="quote">Supporting exact quote</label>
+      <textarea id="quote" maxlength="300" required
+        placeholder="Enter the participant's actual words"></textarea>
+
+      <button type="submit">Add evidence-based finding</button>
+      <p id="feedback" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2>Top three pain points</h2>
+    <p style="font-size:13px;color:#718096;line-height:1.5">
+      Findings are ordered by severity. This is a provisional ranking,
+      not proof of market demand or a 10:1 value ratio.
+    </p>
+
+    <div id="painList">
+      <p style="font-size:13px;color:#718096;margin-top:15px">
+        No evidence recorded yet.
+      </p>
+    </div>
+  </section>
+
+  <a class="back" href="index.html">← Back to dashboard</a>
+</main>
+
+<script>
+  const form = document.getElementById("painForm");
+  const list = document.getElementById("painList");
+  const feedback = document.getElementById("feedback");
+  const findings = [];
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (!form.reportValidity()) return;
+
+    const finding = {
+      title: document.getElementById("title").value.trim(),
+      source: document.getElementById("source").value,
+      severity: Number(document.getElementById("severity").value),
+      behavior: document.getElementById("behavior").value.trim(),
+      quote: document.getElementById("quote").value.trim()
+    };
+
+    if (!finding.title || !finding.behavior || !finding.quote) {
+      feedback.textContent = "Complete all required evidence fields.";
+      return;
+    }
+
+    findings.push(finding);
+    findings.sort((a, b) => b.severity - a.severity);
+
+    renderFindings();
+    form.reset();
+    feedback.textContent =
+      "Finding added for this browser session. It has not been saved to a database.";
+  });
+
+  function renderFindings() {
+    list.innerHTML = "";
+
+    findings.slice(0, 3).forEach((finding, index) => {
+      const card = document.createElement("article");
+      card.className = "pain-item";
+
+      const rank = document.createElement("span");
+      rank.className = "rank";
+      rank.textContent = "RANK #" + (index + 1);
+
+      const title = document.createElement("strong");
+      title.textContent = finding.title;
+
+      const source = document.createElement("p");
+      source.textContent = "Evidence: " + finding.source +
+        " · Severity: " + finding.severity + "/5";
+
+      const behavior = document.createElement("p");
+      behavior.textContent = "Observed: " + finding.behavior;
+
+      const quote = document.createElement("p");
+      quote.textContent = "Quote: “" + finding.quote + "”";
+
+      card.append(rank, title, source, behavior, quote);
+      list.appendChild(card);
+    });
+
+    if (findings.length === 0) {
+      list.textContent = "No evidence recorded yet.";
+    }
+  }
+</script>
+
+</body>
+</html>
