@@ -59,9 +59,7 @@
       padding: 26px;
     }
 
-    .field {
-      margin-bottom: 19px;
-    }
+    .field { margin-bottom: 19px; }
 
     label {
       display: block;
@@ -79,12 +77,17 @@
       font: inherit;
       font-size: 14px;
       color: #263548;
-      background: #fff;
+      background: white;
     }
 
     textarea {
       min-height: 85px;
       resize: vertical;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: 2px solid #168477;
+      outline-offset: 2px;
     }
 
     .consent {
@@ -118,9 +121,7 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background: #116b61;
-    }
+    button:hover { background: #116b61; }
 
     .notice {
       margin-top: 18px;
@@ -136,6 +137,7 @@
     #feedback {
       margin-top: 15px;
       font-size: 13px;
+      line-height: 1.5;
       color: #176b5d;
       font-weight: bold;
     }
@@ -197,9 +199,10 @@
       <div class="consent">
         <input type="checkbox" id="consent" required>
         <label for="consent">
-          The participant was informed about the research purpose,
-          what would be recorded, who could access the information,
-          and their right to decline or stop. Consent was obtained.
+          I confirm that I explained the research purpose, recording
+          method, access, retention and deletion arrangements, and
+          that the participant explicitly agreed to take part.
+          The participant may stop at any time.
         </label>
       </div>
 
@@ -212,7 +215,7 @@
       <div class="field">
         <label for="behavior">Observed behavior (facts only)</label>
         <textarea id="behavior" maxlength="1000"
-          placeholder="What did the participant actually do? Where did they pause, click, repeat, or stop?" required></textarea>
+          placeholder="What did the participant actually do?" required></textarea>
       </div>
 
       <div class="field">
@@ -224,20 +227,21 @@
       <div class="field">
         <label for="interpretation">Researcher interpretation</label>
         <textarea id="interpretation" maxlength="700"
-          placeholder="What might this behavior mean? Keep this separate from observed facts."></textarea>
+          placeholder="What might this behavior mean? Keep it separate from observed facts."></textarea>
       </div>
 
-      <button type="submit">Validate session record</button>
+      <button type="submit">Validate and download session record</button>
       <p id="feedback" role="status" aria-live="polite"></p>
 
     </form>
 
     <div class="notice">
-      <strong>Privacy rule:</strong> This prototype does not transmit or
-      save these entries. Do not enter names, contact details, passwords,
-      health information, financial information, or private messages.
-      Consent must be obtained before any recording. Do not treat this
-      form's checkbox as proof of consent by itself.
+      <strong>Privacy:</strong> Do not enter names, contact details,
+      passwords, private messages, or unnecessary health or financial
+      information. Stop recording if sensitive information appears.
+      This form does not upload or store data on a server. The downloaded
+      file is your responsibility to protect and delete according to
+      the consent and retention arrangements.
     </div>
 
     <a class="back" href="index.html">← Back to dashboard</a>
@@ -252,15 +256,42 @@
 
       if (!form.reportValidity()) return;
 
-      if (!document.getElementById("consent").checked) {
-        feedback.textContent = "Consent confirmation is required.";
-        return;
-      }
+      const record = {
+        session: document.getElementById("session").value,
+        participantRole: document.getElementById("role").value.trim(),
+        relationshipToTeam: document.getElementById("relationship").value,
+        consentConfirmedByResearcher: document.getElementById("consent").checked,
+        taskAttempted: document.getElementById("task").value.trim(),
+        observedBehavior: document.getElementById("behavior").value.trim(),
+        exactQuote: document.getElementById("quote").value.trim(),
+        researcherInterpretation:
+          document.getElementById("interpretation").value.trim(),
+        exportedAt: new Date().toISOString(),
+        evidenceStatus: "Researcher-entered record; not independently verified"
+      };
+
+      const file = new Blob(
+        [JSON.stringify(record, null, 2)],
+        { type: "application/json" }
+      );
+
+      const url = URL.createObjectURL(file);
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = record.session.toLowerCase().replace(" ", "-")
+        + "-evidence.json";
+
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
 
       feedback.textContent =
-        "Record validated in this session. Copy your notes to a secure research log. Nothing has been saved or transmitted.";
+        "Your session record has been downloaded. Keep it in an access-controlled location and follow your retention policy.";
     });
   </script>
 
 </body>
 </html>
+
