@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FieldProof | Observation Log</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f5f8;
+      color: #263548;
+    }
+
+    header {
+      background: #14283f;
+      padding: 22px 7%;
+    }
+
+    header a {
+      color: #64c5b5;
+      text-decoration: none;
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 850px;
+      margin: 40px auto;
+      padding: 0 22px;
+    }
+
+    .eyebrow {
+      color: #168477;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.4px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      color: #14283f;
+      margin-bottom: 12px;
+      font-size: 32px;
+    }
+
+    .intro {
+      color: #718096;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    form {
+      background: white;
+      border: 1px solid #dce3eb;
+      border-radius: 12px;
+      padding: 26px;
+    }
+
+    .field {
+      margin-bottom: 19px;
+    }
+
+    label {
+      display: block;
+      color: #263548;
+      font-weight: bold;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid #cbd5df;
+      border-radius: 7px;
+      padding: 11px;
+      font: inherit;
+      font-size: 14px;
+      color: #263548;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 85px;
+      resize: vertical;
+    }
+
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #f0f7f6;
+      padding: 14px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .consent input {
+      width: auto;
+      margin-top: 3px;
+    }
+
+    .consent label {
+      font-weight: normal;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    button {
+      border: 0;
+      background: #168477;
+      color: white;
+      padding: 13px 20px;
+      border-radius: 7px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #116b61;
+    }
+
+    .notice {
+      margin-top: 18px;
+      padding: 13px;
+      border: 1px solid #f0dba9;
+      background: #fff8e8;
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #66542b;
+    }
+
+    #feedback {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #176b5d;
+      font-weight: bold;
+    }
+
+    .back {
+      display: inline-block;
+      margin: 24px 0;
+      color: #168477;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html">FieldProof</a>
+  </header>
+
+  <main>
+    <p class="eyebrow">RESEARCH EVIDENCE · SESSION RECORD</p>
+    <h1>Observation log</h1>
+
+    <p class="intro">
+      Document what the participant actually does, says, and struggles
+      with. Separate direct observations from your interpretation.
+    </p>
+
+    <form id="observationForm">
+
+      <div class="field">
+        <label for="session">Session number</label>
+        <select id="session" required>
+          <option value="">Select a session</option>
+          <option>Session 01</option>
+          <option>Session 02</option>
+          <option>Session 03</option>
+          <option>Session 04</option>
+          <option>Session 05</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="role">Participant role (no names)</label>
+        <input id="role" type="text" maxlength="100"
+          placeholder="Example: Independent food vendor" required>
+      </div>
+
+      <div class="field">
+        <label for="relationship">Relationship to the team</label>
+        <select id="relationship" required>
+          <option value="">Select one</option>
+          <option value="Stranger">Stranger to the team</option>
+          <option value="Known">Previously known to the team</option>
+        </select>
+      </div>
+
+      <div class="consent">
+        <input type="checkbox" id="consent" required>
+        <label for="consent">
+          The participant was informed about the research purpose,
+          what would be recorded, who could access the information,
+          and their right to decline or stop. Consent was obtained.
+        </label>
+      </div>
+
+      <div class="field">
+        <label for="task">Task attempted</label>
+        <textarea id="task" maxlength="500"
+          placeholder="Describe the task given to the participant." required></textarea>
+      </div>
+
+      <div class="field">
+        <label for="behavior">Observed behavior (facts only)</label>
+        <textarea id="behavior" maxlength="1000"
+          placeholder="What did the participant actually do? Where did they pause, click, repeat, or stop?" required></textarea>
+      </div>
+
+      <div class="field">
+        <label for="quote">Exact participant quote</label>
+        <textarea id="quote" maxlength="500"
+          placeholder="Write the participant's exact words. Do not invent or paraphrase." required></textarea>
+      </div>
+
+      <div class="field">
+        <label for="interpretation">Researcher interpretation</label>
+        <textarea id="interpretation" maxlength="700"
+          placeholder="What might this behavior mean? Keep this separate from observed facts."></textarea>
+      </div>
+
+      <button type="submit">Validate session record</button>
+      <p id="feedback" role="status" aria-live="polite"></p>
+
+    </form>
+
+    <div class="notice">
+      <strong>Privacy rule:</strong> This prototype does not transmit or
+      save these entries. Do not enter names, contact details, passwords,
+      health information, financial information, or private messages.
+      Consent must be obtained before any recording. Do not treat this
+      form's checkbox as proof of consent by itself.
+    </div>
+
+    <a class="back" href="index.html">← Back to dashboard</a>
+  </main>
+
+  <script>
+    const form = document.getElementById("observationForm");
+    const feedback = document.getElementById("feedback");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      if (!form.reportValidity()) return;
+
+      if (!document.getElementById("consent").checked) {
+        feedback.textContent = "Consent confirmation is required.";
+        return;
+      }
+
+      feedback.textContent =
+        "Record validated in this session. Copy your notes to a secure research log. Nothing has been saved or transmitted.";
+    });
+  </script>
+
+</body>
+</html>
