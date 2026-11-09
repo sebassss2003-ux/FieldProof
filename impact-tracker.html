@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FieldProof | Impact Tracker</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f5f8;
+      color: #263548;
+    }
+
+    header {
+      background: #14283f;
+      padding: 22px 7%;
+    }
+
+    header a {
+      color: #64c5b5;
+      font-size: 21px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 950px;
+      margin: 42px auto;
+      padding: 0 22px;
+    }
+
+    .eyebrow {
+      color: #168477;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.4px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      color: #14283f;
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .intro {
+      color: #718096;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid #dce3eb;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #14283f;
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      font-size: 13px;
+      margin: 15px 0 7px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #cbd5df;
+      border-radius: 7px;
+      padding: 11px;
+      font: inherit;
+      font-size: 14px;
+    }
+
+    textarea {
+      min-height: 75px;
+      resize: vertical;
+    }
+
+    button {
+      background: #168477;
+      color: white;
+      border: 0;
+      padding: 12px 18px;
+      border-radius: 7px;
+      margin-top: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover { background: #116b61; }
+
+    .notice {
+      background: #fff8e8;
+      border: 1px solid #f0dba9;
+      border-radius: 9px;
+      padding: 14px;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .result {
+      background: #f0f7f6;
+      border: 1px solid #cce7df;
+      padding: 14px;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    #feedback {
+      margin-top: 12px;
+      color: #176b5d;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .back {
+      display: inline-block;
+      color: #168477;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">FieldProof</a>
+</header>
+
+<main>
+  <p class="eyebrow">IMPROVEMENT · VALIDATION · RETENTION</p>
+  <h1>Impact tracker</h1>
+
+  <p class="intro">
+    Track whether the most painful observed problem was actually
+    fixed, compare the experience before and after, and record
+    evidence of voluntary return behavior.
+  </p>
+
+  <div class="notice">
+    <strong>Evidence rule:</strong> A redesigned screen is not proof
+    that a problem was solved. The original task must be attempted
+    again, and the new behavior must be documented.
+  </div>
+
+  <section class="panel">
+    <h2>Priority #1 — Fix record</h2>
+
+    <form id="fixForm">
+      <label for="problem">Original problem</label>
+      <textarea id="problem" maxlength="500" required
+        placeholder="Describe the most severe observed problem"></textarea>
+
+      <label for="before">Before — observed evidence</label>
+      <textarea id="before" maxlength="700" required
+        placeholder="What did the user do or say before the fix?"></textarea>
+
+      <label for="solution">Correction implemented</label>
+      <textarea id="solution" maxlength="700" required
+        placeholder="Describe the actual change made to the product"></textarea>
+
+      <label for="after">After — retest evidence</label>
+      <textarea id="after" maxlength="700" required
+        placeholder="What happened when the task was attempted again?"></textarea>
+
+      <label for="deployment">Redeployment status</label>
+      <select id="deployment" required>
+        <option value="">Select status</option>
+        <option>Not deployed yet</option>
+        <option>Deployed — URL checked</option>
+      </select>
+
+      <button type="submit">Validate fix record</button>
+      <p id="fixFeedback" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2>Return-user signal</h2>
+
+    <p style="color:#718096;font-size:13px;line-height:1.6">
+      A compliment or a hypothetical promise is not enough.
+      Record a voluntary action that demonstrates real interest
+      in returning.
+    </p>
+
+    <form id="returnForm">
+      <label for="signal">Type of return evidence</label>
+      <select id="signal" required>
+        <option value="">Select evidence</option>
+        <option>Voluntary repeat visit</option>
+        <option>Completed second session</option>
+        <option>Voluntary signup</option>
+        <option>Message requesting continued access</option>
+      </select>
+
+      <label for="proof">Evidence description</label>
+      <textarea id="proof" maxlength="500" required
+        placeholder="Describe the action and when it happened. Do not enter personal identifiers."></textarea>
+
+      <label for="verified">Was the action actually observed?</label>
+      <select id="verified" required>
+        <option value="">Select one</option>
+        <option value="yes">Yes — observed or documented</option>
+        <option value="no">No — only expressed intention</option>
+      </select>
+
+      <button type="submit">Validate return signal</button>
+      <p id="returnFeedback" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2>Evidence status</h2>
+    <div class="result" id="status">
+      No fix or return evidence has been recorded in this session.
+    </div>
+  </section>
+
+  <a class="back" href="index.html">← Back to dashboard</a>
+</main>
+
+<script>
+  let fixValidated = false;
+  let returnValidated = false;
+
+  const fixForm = document.getElementById("fixForm");
+  const returnForm = document.getElementById("returnForm");
+  const statusBox = document.getElementById("status");
+
+  fixForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (!fixForm.reportValidity()) return;
+
+    const deployment = document.getElementById("deployment").value;
+
+    if (deployment !== "Deployed — URL checked") {
+      document.getElementById("fixFeedback").textContent =
+        "A fix is not complete until the corrected version is deployed and checked.";
+      return;
+    }
+
+    fixValidated = true;
+
+    document.getElementById("fixFeedback").textContent =
+      "Fix record completed. Keep the original and retest evidence for review.";
+
+    updateStatus();
+  });
+
+  returnForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (!returnForm.reportValidity()) return;
+
+    const verified = document.getElementById("verified").value;
+
+    if (verified !== "yes") {
+      document.getElementById("returnFeedback").textContent =
+        "Intention alone is not a verified return signal.";
+      return;
+    }
+
+    returnValidated = true;
+
+    document.getElementById("returnFeedback").textContent =
+      "Return signal documented. Retain the supporting evidence.";
+
+    updateStatus();
+  });
+
+  function updateStatus() {
+    statusBox.textContent =
+      "Fix record: " + (fixValidated ? "documented" : "pending") +
+      " | Return signal: " +
+      (returnValidated ? "documented" : "pending") +
+      ". This status is temporary and does not replace external evidence.";
+  }
+</script>
+
+</body>
+</html>
