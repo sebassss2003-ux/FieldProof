@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FieldProof — A real-user testing and evidence-to-decision workspace.">
+  <title>FieldProof | Evidence to Decisions</title>
+  <style>
+    :root {
+      --navy: #14283f;
+      --blue: #315d85;
+      --teal: #168477;
+      --bg: #f3f5f8;
+      --white: #ffffff;
+      --text: #263548;
+      --muted: #718096;
+      --border: #dce3eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--navy);
+      color: white;
+      padding: 22px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 23px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .brand span {
+      color: #64c5b5;
+    }
+
+    .header-label {
+      font-size: 12px;
+      color: #c8d5e2;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 55px auto;
+      padding: 0 24px;
+    }
+
+    .eyebrow {
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      color: var(--navy);
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.1;
+      max-width: 700px;
+      margin-bottom: 18px;
+    }
+
+    .intro {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 35px;
+    }
+
+    .status-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 25px;
+      max-width: 720px;
+    }
+
+    .status-card h2 {
+      font-size: 17px;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .status-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 7px 12px;
+      background: #e5f5f1;
+      color: #176b5d;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    footer {
+      max-width: 1100px;
+      margin: 65px auto 25px;
+      padding: 20px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 18px 22px;
+      }
+
+      .header-label {
+        display: none;
+      }
+
+      main {
+        margin-top: 38px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">Field<span>Proof</span></div>
+    <div class="header-label">WEEK 13 · REAL HUMANS</div>
+  </header>
+
+  <main>
+    <p class="eyebrow">Evidence before assumptions</p>
+
+    <h1>Turn real user sessions into better decisions.</h1>
+
+    <p class="intro">
+      FieldProof is a lightweight evidence workspace designed to help
+      early-stage teams observe real users, document friction, rank
+      critical problems, and track improvements.
+    </p>
+
+    <section class="status-card">
+      <h2>Five sessions. One evidence-based decision.</h2>
+      <p>
+        The goal is not to collect compliments. It is to understand
+        what people actually do, where they struggle, and what the
+        team needs to fix first.
+      </p>
+      <span class="status">PROJECT FOUNDATION · VERSION 1</span>
+    </section>
+  </main>
+
+  <footer>
+    FieldProof · Week 13 Business Bending · Technologist
+  </footer>
+</body>
+</html>
