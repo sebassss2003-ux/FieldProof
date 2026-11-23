@@ -27,8 +27,8 @@
     }
 
     main {
-      max-width: 950px;
-      margin: 42px auto;
+      max-width: 850px;
+      margin: 40px auto;
       padding: 0 22px;
     }
 
@@ -42,58 +42,78 @@
 
     h1 {
       color: #14283f;
-      font-size: 34px;
+      font-size: 32px;
       margin-bottom: 12px;
     }
 
     .intro {
       color: #718096;
       line-height: 1.6;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
     }
 
-    .panel {
+    .evidence-notice {
+      background: #eaf4f8;
+      border: 1px solid #b9dce5;
+      border-left: 5px solid #168477;
+      border-radius: 9px;
+      padding: 18px;
+      margin-bottom: 22px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .evidence-notice h2 {
+      color: #14283f;
+      font-size: 16px;
+      margin-bottom: 7px;
+    }
+
+    form {
       background: white;
       border: 1px solid #dce3eb;
       border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 20px;
+      padding: 25px;
     }
 
-    h2 {
-      color: #14283f;
-      font-size: 18px;
-      margin-bottom: 16px;
-    }
+    .field { margin-bottom: 19px; }
 
     label {
       display: block;
-      font-weight: bold;
       font-size: 13px;
-      margin: 15px 0 7px;
+      font-weight: bold;
+      margin-bottom: 8px;
     }
 
-    input, select, textarea {
+    input, textarea, select {
       width: 100%;
       border: 1px solid #cbd5df;
       border-radius: 7px;
       padding: 11px;
       font: inherit;
       font-size: 14px;
+      background: white;
+      color: #263548;
     }
 
     textarea {
-      min-height: 75px;
+      min-height: 80px;
       resize: vertical;
+    }
+
+    .helper {
+      color: #718096;
+      font-size: 12px;
+      line-height: 1.5;
+      margin-top: 6px;
     }
 
     button {
       background: #168477;
       color: white;
-      border: 0;
-      padding: 12px 18px;
+      border: none;
       border-radius: 7px;
-      margin-top: 17px;
+      padding: 13px 20px;
       font-weight: bold;
       cursor: pointer;
     }
@@ -103,25 +123,16 @@
     .notice {
       background: #fff8e8;
       border: 1px solid #f0dba9;
-      border-radius: 9px;
-      padding: 14px;
-      font-size: 12px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .result {
-      background: #f0f7f6;
-      border: 1px solid #cce7df;
-      padding: 14px;
       border-radius: 8px;
-      margin-top: 15px;
-      font-size: 13px;
+      padding: 14px;
+      margin-top: 20px;
+      color: #66542b;
+      font-size: 12px;
       line-height: 1.6;
     }
 
     #feedback {
-      margin-top: 12px;
+      margin-top: 15px;
       color: #176b5d;
       font-size: 13px;
       font-weight: bold;
@@ -132,7 +143,8 @@
       color: #168477;
       text-decoration: none;
       font-weight: bold;
-      margin: 20px 0;
+      margin: 25px 18px 25px 0;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -144,156 +156,172 @@
 </header>
 
 <main>
-  <p class="eyebrow">IMPROVEMENT · VALIDATION · RETENTION</p>
+
+  <p class="eyebrow">CORRECTION → RETEST</p>
+
   <h1>Impact tracker</h1>
 
   <p class="intro">
-    Track whether the most painful observed problem was actually
-    fixed, compare the experience before and after, and record
-    evidence of voluntary return behavior.
+    Track what changed after identifying a usability problem.
+    Compare the original task with the same task after the correction
+    to understand whether the change made a difference.
   </p>
 
+  <section class="evidence-notice">
+    <h2>A change is not proof of improvement</h2>
+    <p>
+      A redesigned screen or proposed solution does not demonstrate
+      success by itself. Retest the same task with users and document
+      what actually happened before claiming that the correction worked.
+    </p>
+    <p style="margin-top:8px;">
+      If no retest has taken place, leave the result pending.
+    </p>
+  </section>
+
+  <form id="impactForm">
+
+    <div class="field">
+      <label for="problem">Original problem</label>
+      <textarea id="problem" maxlength="500"
+        placeholder="Describe the evidence-backed problem identified during research."
+        required></textarea>
+    </div>
+
+    <div class="field">
+      <label for="session">Original supporting session</label>
+      <select id="session" required>
+        <option value="">Select original session</option>
+        <option>Session 01</option>
+        <option>Session 02</option>
+        <option>Session 03</option>
+        <option>Session 04</option>
+        <option>Session 05</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="before">Original behavior (before correction)</label>
+      <textarea id="before" maxlength="700"
+        placeholder="What did the participant actually do when attempting the task?"
+        required></textarea>
+    </div>
+
+    <div class="field">
+      <label for="correction">Correction implemented</label>
+      <textarea id="correction" maxlength="700"
+        placeholder="Describe the actual change made to the product."
+        required></textarea>
+    </div>
+
+    <div class="field">
+      <label for="sameTask">Was the same task retested?</label>
+      <select id="sameTask" required>
+        <option value="">Select status</option>
+        <option value="Yes">Yes, the same task was retested</option>
+        <option value="No">No, retest is pending</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="after">Observed behavior after correction</label>
+      <textarea id="after" maxlength="700"
+        placeholder="Record what actually happened during the retest. If no retest occurred, write 'Pending'."
+        required></textarea>
+    </div>
+
+    <div class="field">
+      <label for="outcome">Evidence-based outcome</label>
+      <select id="outcome" required>
+        <option value="">Select outcome</option>
+        <option value="Improved">Improved — supported by retest evidence</option>
+        <option value="Unchanged">Unchanged — retest showed no difference</option>
+        <option value="Worsened">Worsened — retest revealed a new problem</option>
+        <option value="Pending">Pending — no completed retest</option>
+      </select>
+      <p class="helper">
+        Only select an improvement, unchanged or worsened outcome
+        when a real retest supports that conclusion.
+      </p>
+    </div>
+
+    <button type="submit">Validate and download impact record</button>
+
+    <p id="feedback" role="status" aria-live="polite"></p>
+
+  </form>
+
   <div class="notice">
-    <strong>Evidence rule:</strong> A redesigned screen is not proof
-    that a problem was solved. The original task must be attempted
-    again, and the new behavior must be documented.
+    <strong>Research integrity:</strong>
+    Do not claim that a correction improved the product without
+    evidence from a retest. Synthetic persona feedback can help
+    identify clarity issues, but it is not a substitute for a real
+    participant retest. Do not enter personal or sensitive information.
   </div>
 
-  <section class="panel">
-    <h2>Priority #1 — Fix record</h2>
+  <a class="back" href="pain-ranking.html">← Pain Ranking</a>
+  <a class="back" href="index.html">Back to dashboard</a>
 
-    <form id="fixForm">
-      <label for="problem">Original problem</label>
-      <textarea id="problem" maxlength="500" required
-        placeholder="Describe the most severe observed problem"></textarea>
-
-      <label for="before">Before — observed evidence</label>
-      <textarea id="before" maxlength="700" required
-        placeholder="What did the user do or say before the fix?"></textarea>
-
-      <label for="solution">Correction implemented</label>
-      <textarea id="solution" maxlength="700" required
-        placeholder="Describe the actual change made to the product"></textarea>
-
-      <label for="after">After — retest evidence</label>
-      <textarea id="after" maxlength="700" required
-        placeholder="What happened when the task was attempted again?"></textarea>
-
-      <label for="deployment">Redeployment status</label>
-      <select id="deployment" required>
-        <option value="">Select status</option>
-        <option>Not deployed yet</option>
-        <option>Deployed — URL checked</option>
-      </select>
-
-      <button type="submit">Validate fix record</button>
-      <p id="fixFeedback" role="status" aria-live="polite"></p>
-    </form>
-  </section>
-
-  <section class="panel">
-    <h2>Return-user signal</h2>
-
-    <p style="color:#718096;font-size:13px;line-height:1.6">
-      A compliment or a hypothetical promise is not enough.
-      Record a voluntary action that demonstrates real interest
-      in returning.
-    </p>
-
-    <form id="returnForm">
-      <label for="signal">Type of return evidence</label>
-      <select id="signal" required>
-        <option value="">Select evidence</option>
-        <option>Voluntary repeat visit</option>
-        <option>Completed second session</option>
-        <option>Voluntary signup</option>
-        <option>Message requesting continued access</option>
-      </select>
-
-      <label for="proof">Evidence description</label>
-      <textarea id="proof" maxlength="500" required
-        placeholder="Describe the action and when it happened. Do not enter personal identifiers."></textarea>
-
-      <label for="verified">Was the action actually observed?</label>
-      <select id="verified" required>
-        <option value="">Select one</option>
-        <option value="yes">Yes — observed or documented</option>
-        <option value="no">No — only expressed intention</option>
-      </select>
-
-      <button type="submit">Validate return signal</button>
-      <p id="returnFeedback" role="status" aria-live="polite"></p>
-    </form>
-  </section>
-
-  <section class="panel">
-    <h2>Evidence status</h2>
-    <div class="result" id="status">
-      No fix or return evidence has been recorded in this session.
-    </div>
-  </section>
-
-  <a class="back" href="index.html">← Back to dashboard</a>
 </main>
 
 <script>
-  let fixValidated = false;
-  let returnValidated = false;
+  const form = document.getElementById("impactForm");
+  const feedback = document.getElementById("feedback");
 
-  const fixForm = document.getElementById("fixForm");
-  const returnForm = document.getElementById("returnForm");
-  const statusBox = document.getElementById("status");
-
-  fixForm.addEventListener("submit", function(event) {
+  form.addEventListener("submit", function(event) {
     event.preventDefault();
 
-    if (!fixForm.reportValidity()) return;
+    if (!form.reportValidity()) return;
 
-    const deployment = document.getElementById("deployment").value;
+    const retested = document.getElementById("sameTask").value;
+    const outcome = document.getElementById("outcome").value;
 
-    if (deployment !== "Deployed — URL checked") {
-      document.getElementById("fixFeedback").textContent =
-        "A fix is not complete until the corrected version is deployed and checked.";
+    if (retested === "No" && outcome !== "Pending") {
+      feedback.textContent =
+        "A retest is pending. Select Pending as the outcome.";
       return;
     }
 
-    fixValidated = true;
-
-    document.getElementById("fixFeedback").textContent =
-      "Fix record completed. Keep the original and retest evidence for review.";
-
-    updateStatus();
-  });
-
-  returnForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    if (!returnForm.reportValidity()) return;
-
-    const verified = document.getElementById("verified").value;
-
-    if (verified !== "yes") {
-      document.getElementById("returnFeedback").textContent =
-        "Intention alone is not a verified return signal.";
+    if (retested === "Yes" && outcome === "Pending") {
+      feedback.textContent =
+        "A retest was completed. Select the outcome supported by its evidence.";
       return;
     }
 
-    returnValidated = true;
+    const record = {
+      title: "FieldProof — Impact Tracker",
+      exportedAt: new Date().toISOString(),
+      originalProblem: document.getElementById("problem").value.trim(),
+      originalSession: document.getElementById("session").value,
+      behaviorBefore: document.getElementById("before").value.trim(),
+      correctionImplemented: document.getElementById("correction").value.trim(),
+      sameTaskRetested: retested,
+      behaviorAfter: document.getElementById("after").value.trim(),
+      outcome: outcome,
+      evidenceStatus: "Researcher-entered; not independently verified"
+    };
 
-    document.getElementById("returnFeedback").textContent =
-      "Return signal documented. Retain the supporting evidence.";
+    const blob = new Blob(
+      [JSON.stringify(record, null, 2)],
+      { type: "application/json" }
+    );
 
-    updateStatus();
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "fieldproof-impact-record.json";
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+
+    feedback.textContent =
+      "Impact record downloaded. Keep the file secure and retain the supporting research evidence.";
   });
-
-  function updateStatus() {
-    statusBox.textContent =
-      "Fix record: " + (fixValidated ? "documented" : "pending") +
-      " | Return signal: " +
-      (returnValidated ? "documented" : "pending") +
-      ". This status is temporary and does not replace external evidence.";
-  }
 </script>
 
 </body>
 </html>
+
