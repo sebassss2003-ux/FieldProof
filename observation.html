@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FieldProof | Observation Log</title>
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -49,7 +50,24 @@
     .intro {
       color: #718096;
       line-height: 1.6;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
+    }
+
+    .privacy-banner {
+      background: #eaf4f8;
+      border: 1px solid #b9dce5;
+      border-left: 5px solid #168477;
+      border-radius: 9px;
+      padding: 18px;
+      margin-bottom: 22px;
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    .privacy-banner h2 {
+      color: #14283f;
+      font-size: 16px;
+      margin-bottom: 7px;
     }
 
     form {
@@ -88,6 +106,13 @@
     input:focus, textarea:focus, select:focus {
       outline: 2px solid #168477;
       outline-offset: 2px;
+    }
+
+    .helper {
+      color: #718096;
+      font-size: 12px;
+      line-height: 1.5;
+      margin-top: 6px;
     }
 
     .consent {
@@ -152,6 +177,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -160,12 +186,26 @@
 
   <main>
     <p class="eyebrow">RESEARCH EVIDENCE · SESSION RECORD</p>
+
     <h1>Observation log</h1>
 
     <p class="intro">
       Document what the participant actually does, says, and struggles
       with. Separate direct observations from your interpretation.
     </p>
+
+    <section class="privacy-banner">
+      <h2>Important: How your data is stored</h2>
+      <p>
+        FieldProof does not automatically save your records to an online
+        account or server. When you submit this form, your session record
+        is downloaded directly to your device as a JSON file.
+      </p>
+      <p style="margin-top:8px;">
+        You are responsible for protecting the downloaded file and
+        following your agreed data retention and deletion arrangements.
+      </p>
+    </section>
 
     <form id="observationForm">
 
@@ -185,6 +225,7 @@
         <label for="role">Participant role (no names)</label>
         <input id="role" type="text" maxlength="100"
           placeholder="Example: Independent food vendor" required>
+        <p class="helper">Use a role or anonymous identifier. Never enter the participant's name.</p>
       </div>
 
       <div class="field">
@@ -215,7 +256,8 @@
       <div class="field">
         <label for="behavior">Observed behavior (facts only)</label>
         <textarea id="behavior" maxlength="1000"
-          placeholder="What did the participant actually do?" required></textarea>
+          placeholder="What did the participant actually do? Describe actions, pauses or difficulties." required></textarea>
+        <p class="helper">Record what you saw, not what you assume the participant was thinking.</p>
       </div>
 
       <div class="field">
@@ -228,23 +270,27 @@
         <label for="interpretation">Researcher interpretation</label>
         <textarea id="interpretation" maxlength="700"
           placeholder="What might this behavior mean? Keep it separate from observed facts."></textarea>
+        <p class="helper">This is your interpretation, not a verified participant statement.</p>
       </div>
 
       <button type="submit">Validate and download session record</button>
+
       <p id="feedback" role="status" aria-live="polite"></p>
 
     </form>
 
     <div class="notice">
-      <strong>Privacy:</strong> Do not enter names, contact details,
-      passwords, private messages, or unnecessary health or financial
-      information. Stop recording if sensitive information appears.
-      This form does not upload or store data on a server. The downloaded
-      file is your responsibility to protect and delete according to
-      the consent and retention arrangements.
+      <strong>Privacy and research integrity:</strong>
+      Do not enter names, contact details, passwords, private messages,
+      or unnecessary health or financial information. Stop recording if
+      sensitive information appears. The form does not upload or store
+      data on a server. Protect downloaded files and delete them according
+      to your agreed retention arrangements.
     </div>
 
-    <a class="back" href="index.html">← Back to dashboard</a>
+    <a class="back" href="sessions.html">← Back to sessions</a>
+    <a class="back" href="index.html" style="margin-left:18px;">Back to dashboard</a>
+
   </main>
 
   <script>
@@ -288,7 +334,7 @@
       URL.revokeObjectURL(url);
 
       feedback.textContent =
-        "Your session record has been downloaded. Keep it in an access-controlled location and follow your retention policy.";
+        "Your session record has been downloaded. Keep it in a secure location and follow your retention policy.";
     });
   </script>
 
