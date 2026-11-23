@@ -5,8 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FieldProof | User Sessions</title>
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: Arial, sans-serif;
@@ -50,8 +55,33 @@
     .description {
       color: #718096;
       line-height: 1.6;
-      margin-bottom: 28px;
+      margin-bottom: 25px;
       max-width: 700px;
+    }
+
+    .getting-started {
+      background: #eaf4f8;
+      border: 1px solid #b9dce5;
+      border-left: 5px solid #168477;
+      border-radius: 9px;
+      padding: 19px;
+      margin-bottom: 18px;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .getting-started h2 {
+      color: #14283f;
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .steps {
+      margin: 10px 0 0 20px;
+    }
+
+    .steps li {
+      margin-bottom: 5px;
     }
 
     .notice {
@@ -87,6 +117,7 @@
       color: #718096;
       font-size: 13px;
       line-height: 1.5;
+      margin-bottom: 5px;
     }
 
     .session-status {
@@ -100,16 +131,43 @@
       font-weight: bold;
     }
 
-    .back {
+    .action {
       display: inline-block;
+      margin: 22px 0 0;
+      padding: 13px 19px;
+      background: #1f5a9d;
+      color: white;
+      text-decoration: none;
+      border-radius: 7px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .action:hover {
+      background: #14283f;
+    }
+
+    .back {
+      display: block;
       margin-top: 30px;
       color: #168477;
       text-decoration: none;
       font-weight: bold;
       font-size: 14px;
     }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 28px;
+      }
+
+      main {
+        margin: 30px auto;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -117,7 +175,9 @@
   </header>
 
   <main>
+
     <p class="eyebrow">LAYER 2 · REAL HUMANS</p>
+
     <h1>User session tracker</h1>
 
     <p class="description">
@@ -126,11 +186,34 @@
       friction, exact words, and behavior.
     </p>
 
+    <section class="getting-started">
+      <h2>Getting started</h2>
+
+      <p>
+        These five session slots help you organize your research.
+        They are placeholders for real participant interactions,
+        not pre-filled or completed tests.
+      </p>
+
+      <ol class="steps">
+        <li>Choose a session slot to organize your next participant test.</li>
+        <li>Explain the research purpose and obtain informed consent.</li>
+        <li>Open the Observation Log to document the participant's task and behavior.</li>
+        <li>Keep observations separate from your personal interpretation.</li>
+        <li>Update a session's status only after the research has actually taken place.</li>
+      </ol>
+
+      <a class="action" href="observation.html">
+        Open Observation Log →
+      </a>
+    </section>
+
     <div class="notice">
       <strong>Research integrity:</strong>
       These five entries are empty placeholders, not completed tests.
       At least three participants must be strangers to the team.
       Obtain informed consent before recording or collecting research evidence.
+      Never invent participant responses or mark unfinished sessions as completed.
     </div>
 
     <section class="session-grid">
@@ -178,7 +261,9 @@
     </section>
 
     <a class="back" href="index.html">← Back to dashboard</a>
+
   </main>
 
 </body>
 </html>
+
